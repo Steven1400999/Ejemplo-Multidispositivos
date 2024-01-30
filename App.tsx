@@ -1,5 +1,5 @@
 import { config } from '@gluestack-ui/config';
-import { Box, GluestackUIProvider, Text } from '@gluestack-ui/themed';
+import { Box, GluestackUIProvider, Heading, Link, Text, VStack, Image } from '@gluestack-ui/themed';
 import { ScrollView } from 'react-native';
 import Gradient from './assets/Icons/Gradient';
 import DocumentData from './assets/Icons/DocumentData';
@@ -49,6 +49,7 @@ const FeatureCard = ({ iconSvg: IconSvg, name, desc }: any) => {
     </Box>
   );
 };
+
 
 const Container = () => {
   return (
@@ -125,21 +126,56 @@ const Container = () => {
               },
             }}
           >
-            <FeatureCard
-              iconSvg={DocumentData}
-              name="Docs"
-              desc="Find in-depth information about gluestack features and API."
-            />
-            <FeatureCard
-              iconSvg={LightBulbPerson}
-              name="Learn"
-              desc="Learn about gluestack in an interactive course with quizzes!"
-            />
-            <FeatureCard
-              iconSvg={Rocket}
-              name="Deploy"
-              desc="Instantly drop your gluestack site to a shareable URL with vercel."
-            />
+             <Box
+      maxWidth="$64"
+      borderColor="$borderLight200"
+      borderRadius="$lg"
+      borderWidth="$1"
+      my="$4"
+      overflow="hidden"
+      $base-mx="$5"
+      $dark-bg="$backgroundDark900"
+      $dark-borderColor="$borderDark800"
+    >
+      <Box>
+        <Image
+          h={150}
+          width="100%"
+          source={{
+            uri: "https://images.unsplash.com/photo-1549888834-3ec93abae044?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2940&q=80",
+          }}
+        />
+      </Box>
+      <VStack px="$6" pt="$4" pb="$6">
+        <Text $dark-color="$textLight200" fontSize="$sm" my="$1.5">
+          August 16, 2023
+        </Text>
+        <Heading $dark-color="$textLight200" size="sm">
+          Fresh Orange
+        </Heading>
+        <Text my="$1.5" $dark-color="$textLight200" fontSize="$xs">
+          Oranges are a great source of vitamin C, which is essential for a
+          healthy immune system. Oranges are a great source of vitamin C, which
+          is important for maintaining a healthy immune system.
+        </Text>
+        <Text
+          $dark-color="$textLight200"
+          my="$1.5"
+          fontSize="$xs"
+          isTruncated="true"
+        >
+          Vitamin C also helps with the absorption of iron and the production of
+          collagen, which supports healthy skin, teeth, and bones.
+        </Text>
+        <Link href="https://gluestack.io/" isExternal>
+          <Text fontSize="$sm" color="$pink600">
+            Find out more
+          </Text>
+        </Link>
+      </VStack>
+    </Box>
+
+
           </Box>
         </Box>
       </ScrollView>
