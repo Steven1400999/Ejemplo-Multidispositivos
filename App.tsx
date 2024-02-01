@@ -54,7 +54,7 @@ const FeatureCard = ({ iconSvg: IconSvg, name, desc }: any) => {
 
 const Container = () => {
   return (
-    <Box flex={1} backgroundColor="$white">
+    <Box flex={1} backgroundColor="$black">
       <ScrollView
         style={{ height: '100%' }}
         contentContainerStyle={{ flexGrow: 1 }}
