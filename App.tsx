@@ -103,7 +103,7 @@ const Container = () => {
             flexDirection: 'row'
           }
         }}>
-          <Box maxWidth="$64" borderColor="$borderLight200" borderRadius="$lg" borderWidth="$1" my="$4" overflow="hidden" $base-mx="$5" $dark-bg="$backgroundDark900" $dark-borderColor="$borderDark800">
+          <Box maxWidth="$64" borderColor="$indigo600" borderRadius="$lg" borderWidth="$1" my="$4" overflow="hidden" $base-mx="$5" $dark-bg="$backgroundDark900" $dark-borderColor="$borderDark800" bg="$amber100" >
             <Box>
               <Image h={150} width="100%" source={{
                 uri: "https://images.unsplash.com/photo-1549888834-3ec93abae044?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2940&q=80"
@@ -142,11 +142,14 @@ const Container = () => {
                 >
                   <ButtonText>
                     Button
-                    </ButtonText>
+                  </ButtonText>
                 </Button>
- <br />
-                <Button_lg/>
-
+                <br />
+                <Button_lg />
+                <br />
+                <Button_lg />
+                <br />
+                <Button_lg />
               </Link>
             </VStack>
           </Box>
