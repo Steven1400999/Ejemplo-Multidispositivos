@@ -1,6 +1,6 @@
+
+
 import { FormControlLabel, FormControlLabelText, FormControlHelper, FormControlHelperText, FormControlError, FormControlErrorIcon, FormControlErrorText, Radio, RadioGroup, RadioIcon, RadioIndicator, RadioLabel, Checkbox, CheckboxGroup, CheckboxIndicator, CheckboxIcon, CheckboxLabel, Textarea, TextareaInput, Select, SelectTrigger, SelectInput, SelectIcon, SelectPortal, SelectBackdrop, SelectContent, SelectDragIndicatorWrapper, SelectDragIndicator, SelectItem, Slider, SliderTrack, SliderFilledTrack, SliderThumb, Switch, Modal, ModalBackdrop, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, CircleIcon, CheckIcon, AlertCircleIcon, ChevronDownIcon } from '@gluestack-ui/themed';
-
-
 import { Center, Button, ButtonText, ButtonIcon, ButtonGroup, Icon, AddIcon, InfoIcon, ButtonSpinner, ArrowUpIcon, HStack, ThreeDotsIcon, Input, InputField } from '@gluestack-ui/themed';
 import React from 'react';
 import { EditIcon, ArrowLeftIcon } from 'lucide-react-native';
@@ -99,26 +99,62 @@ const Container = () => {
                 <FormControlLabel>
                   <FormControlLabelText color='$white'>Email</FormControlLabelText>
                 </FormControlLabel>
-                <Input  $focus-borderColor='$green500'  >
-                  <InputField type="text" defaultValue="12345" placeholder="email" />
+                <Input $focus-borderColor='$orange500'>
+                  <InputField type="text" placeholder="Email" color='$white' />
                 </Input>
 
                 <FormControlHelper>
                   <FormControlHelperText>
-                    Must be atleast 6 characters.
+                    Your email here.
                   </FormControlHelperText>
                 </FormControlHelper>
 
                 <FormControlError>
                   <FormControlErrorIcon as={AlertCircleIcon} />
                   <FormControlErrorText>
-                    Atleast 6 characters are required.
+                    Your email have to have an @ and .com.
                   </FormControlErrorText>
                 </FormControlError>
               </FormControl>
 
 
             </Box>
+
+            <Box>
+              <FormControl isInvalid={false} size={"lg"} isDisabled={false} isRequired={true}>
+                <FormControlLabel>
+                  <FormControlLabelText color='$white'>Password</FormControlLabelText>
+                </FormControlLabel>
+                <Input $focus-borderColor='$orange500'>
+                  <InputField type="password" placeholder="Password" color='$white' />
+                </Input>
+
+                <FormControlHelper>
+                  <FormControlHelperText>
+                    Must be atleast 8 characters.
+                  </FormControlHelperText>
+                </FormControlHelper>
+
+                <FormControlError>
+                  <FormControlErrorIcon as={AlertCircleIcon} />
+                  <FormControlErrorText>
+                    Atleast 8 characters are required.
+                  </FormControlErrorText>
+                </FormControlError>
+              </FormControl>
+
+            </Box>
+
+            <Box>
+
+              <Button action={"primary"} variant={"solid"} size={"lg"} isDisabled={false}>
+                <ButtonText>
+                  Log in
+                </ButtonText>
+              </Button>
+
+            </Box>
+
 
             <Box sx={{
               w: 100,
