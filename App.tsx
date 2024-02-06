@@ -1,5 +1,9 @@
+import { FormControlLabel, FormControlLabelText, FormControlHelper, FormControlHelperText, FormControlError, FormControlErrorIcon, FormControlErrorText, Radio, RadioGroup, RadioIcon, RadioIndicator, RadioLabel, Checkbox, CheckboxGroup, CheckboxIndicator, CheckboxIcon, CheckboxLabel, Textarea, TextareaInput, Select, SelectTrigger, SelectInput, SelectIcon, SelectPortal, SelectBackdrop, SelectContent, SelectDragIndicatorWrapper, SelectDragIndicator, SelectItem, Slider, SliderTrack, SliderFilledTrack, SliderThumb, Switch, Modal, ModalBackdrop, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, CircleIcon, CheckIcon, AlertCircleIcon, ChevronDownIcon } from '@gluestack-ui/themed';
+
+
 import { Center, Button, ButtonText, ButtonIcon, ButtonGroup, Icon, AddIcon, InfoIcon, ButtonSpinner, ArrowUpIcon, HStack, ThreeDotsIcon, Input, InputField } from '@gluestack-ui/themed';
-import React from 'react'; import { EditIcon, ArrowLeftIcon } from 'lucide-react-native';
+import React from 'react';
+import { EditIcon, ArrowLeftIcon } from 'lucide-react-native';
 import { Box, GluestackUIProvider, Heading, Link, Text, VStack, Image } from '@gluestack-ui/themed';
 import { ScrollView } from 'react-native';
 import Gradient from './assets/Icons/Gradient';
@@ -8,10 +12,8 @@ import LightBulbPerson from './assets/Icons/LightbulbPerson';
 import Rocket from './assets/Icons/Rocket';
 import Logo from './assets/Icons/Logo';
 import { config } from './config/gluestack-ui.config';
-import Button_lg from "./components/Button_lg"
-
-
-
+import Button_lg from "./components/Button_lg";
+import { FormControl } from '@gluestack-ui/themed';
 export default function App() {
   return <GluestackUIProvider config={config}>
     <Home />
@@ -85,74 +87,66 @@ const Container = () => {
             alignSelf: 'flex-start'
           }
         }}>
-          <Text color="$white" fontWeight="$normal">
-            Desarrollo de aplicaciones multidispositivos
-          </Text>
-          <Text color="$white" fontWeight="$medium" ml="$2">
-            8vo semestre
-          </Text>
-        </Box>
-        <Box justifyContent="center" alignItems="center">
-          <Logo />
-        </Box>
-        <Box sx={{
-          '@base': {
-            flexDirection: 'column'
-          },
-          '@md': {
-            flexDirection: 'row'
-          }
-        }}>
-          <Box maxWidth="$64" borderColor="$indigo600" borderRadius="$lg" borderWidth="$1" my="$4" overflow="hidden" $base-mx="$5" $dark-bg="$backgroundDark900" $dark-borderColor="$borderDark800" bg="$amber100" >
-            <Box>
-              <Image h={150} width="100%" source={{
-                uri: "https://images.unsplash.com/photo-1549888834-3ec93abae044?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2940&q=80"
-              }} />
-            </Box>
-            <VStack px="$6" pt="$4" pb="$6">
-              <Text $dark-color="$textLight200" fontSize="$sm" my="$1.5">
-                August 16, 2023
-              </Text>
-              <Heading $dark-color="$textLight200" size="sm">
-                Fresh Orange
-              </Heading>
-              <Text my="$1.5" $dark-color="$textLight200" fontSize="$xs">
-                Oranges are a great source of vitamin C, which is essential for a
-                healthy immune system. Oranges are a great source of vitamin C, which
-                is important for maintaining a healthy immune system.
-              </Text>
-              <Text $dark-color="$textLight200" my="$1.5" fontSize="$xs" isTruncated="true">
-                Vitamin C also helps with the absorption of iron and the production of
-                collagen, which supports healthy skin, teeth, and bones.
-              </Text>
-              <Link href="https://gluestack.io/" isExternal>
-                <Text fontSize="$sm" color="$pink600">
-                  Find out more
-                </Text>
-                <br />
 
-                <Button
-                  size="lg"
-                  p="$3"
-                  bg="$green700"
-                  $hover-bg="$green300"
-                  $active-bg="$green900"
-                  $_txt_hover_color="$white"
-                  borderRadius={25}
-                >
-                  <ButtonText>
-                    Button
-                  </ButtonText>
-                </Button>
-                <br />
-                <Button_lg />
-                <br />
-                <Button_lg />
-                <br />
-                <Button_lg />
-              </Link>
-            </VStack>
-          </Box>
+          <VStack space={"lg"} sx={{
+            justifyContent: 'center',
+            alignItems: 'center'
+          }} reversed={false} space={"lg"}>
+
+            <Box>
+
+              <FormControl isInvalid={false} size={"lg"} isDisabled={false} isRequired={false}>
+                <FormControlLabel>
+                  <FormControlLabelText color='$white'>Email</FormControlLabelText>
+                </FormControlLabel>
+                <Input  $focus-borderColor='$green500'  >
+                  <InputField type="text" defaultValue="12345" placeholder="email" />
+                </Input>
+
+                <FormControlHelper>
+                  <FormControlHelperText>
+                    Must be atleast 6 characters.
+                  </FormControlHelperText>
+                </FormControlHelper>
+
+                <FormControlError>
+                  <FormControlErrorIcon as={AlertCircleIcon} />
+                  <FormControlErrorText>
+                    Atleast 6 characters are required.
+                  </FormControlErrorText>
+                </FormControlError>
+              </FormControl>
+
+
+            </Box>
+
+            <Box sx={{
+              w: 100,
+              h: 100,
+              rounded: '$sm',
+              bg: '$blue300'
+            }} />
+            <Box sx={{
+              w: 100,
+              h: 100,
+              rounded: '$sm',
+              bg: '$blue400'
+            }} />
+            <Box sx={{
+              w: 100,
+              h: 100,
+              rounded: '$sm',
+              bg: '$blue500'
+            }} />
+            <Box sx={{
+              w: 100,
+              h: 100,
+              rounded: '$sm',
+              bg: '$blue600'
+            }} />
+          </VStack>
+
+          <br />
 
 
         </Box>
