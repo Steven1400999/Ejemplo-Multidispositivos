@@ -14,6 +14,7 @@ import Logo from './assets/Icons/Logo';
 import { config } from './config/gluestack-ui.config';
 import Button_lg from "./components/Button_lg";
 import { FormControl } from '@gluestack-ui/themed';
+
 export default function App() {
   return <GluestackUIProvider config={config}>
     <Home />
@@ -22,6 +23,64 @@ export default function App() {
 const Home = () => {
   return <Container />;
 };
+
+const [formData, setData] = React.useState({});
+const [errors, setError] = React.useState({});
+
+let regex_email = /^[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,5}/
+const digit = /[0-9]/
+const upperCase = /[A-Z]/
+const lowerCase = /[a-z]/
+const nonAlphanumeric = /[^0-9A-Za-z]/
+
+
+const isStrongPassword = (password) =>
+  [digit, upperCase, lowerCase, nonAlphanumeric]
+    .every((re) => re.test(password))
+  && password.length >= 8
+  && password.length <= 32
+
+
+const validate = () =>
+  setErrors({})
+console.log('email', formData, email)
+console.log('password', formData.password)
+if (regex_email.test(formData.email) != false) {
+  console.log('regex_email', formData.email)
+
+  setErrosrs({
+    ...errors,
+    email: 'Email invalid'
+  });
+  return false;
+
+
+  if (formData.email === undefined) {
+
+    console.log('undefinied', formData.email)
+    setErrors({
+      ...errors,
+      email: 'Theres no email'
+    });
+    return false;
+  } else if (formData.email) {
+
+  }
+
+  if (!isStrongPassword(formData.password)) {
+    setErrors...
+    password: 'Wrong Password'
+
+  }
+
+
+  const onSubmit = () => {
+    validate() ? console.log('Validation OK');
+    console.log('Validation failed', errors);
+  };
+
+}
+
 const FeatureCard = ({
   iconSvg: IconSvg,
   name,
@@ -33,7 +92,7 @@ const FeatureCard = ({
     }
   }} m="$2" p="$4" rounded="$md">
     <Box alignItems="center" display="flex" flexDirection="row">
-      {/* <Image source={iconSvg} alt="document" width={22} height={22} /> */}
+      {/* < Image source={iconSvg} alt="document" width={22} height={22} /> */}
       <Text>
         <IconSvg />
       </Text>
@@ -100,7 +159,8 @@ const Container = () => {
                   <FormControlLabelText color='$white'>Email</FormControlLabelText>
                 </FormControlLabel>
                 <Input $focus-borderColor='$orange500'>
-                  <InputField type="text" placeholder="Email" color='$white' />
+                  <InputField type="text" placeholder="Email" color='$white' onChangeText={value=>setData({...formData, email: value})}/>
+                  
                 </Input>
 
                 <FormControlHelper>
@@ -126,7 +186,7 @@ const Container = () => {
                   <FormControlLabelText color='$white'>Password</FormControlLabelText>
                 </FormControlLabel>
                 <Input $focus-borderColor='$orange500'>
-                  <InputField type="password" placeholder="Password" color='$white' />
+                  <InputField type="password" placeholder="Password" color='$white' onChangeText={value=>setData({...formData, password: value})}/>
                 </Input>
 
                 <FormControlHelper>
@@ -147,7 +207,7 @@ const Container = () => {
 
             <Box>
 
-              <Button action={"primary"} variant={"solid"} size={"lg"} isDisabled={false}>
+              <Button action={"primary"} variant={"solid"} size={"lg"} isDisabled={false} onPress={onSubmit}>
                 <ButtonText>
                   Log in
                 </ButtonText>
