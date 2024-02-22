@@ -14,6 +14,7 @@ import Logo from './assets/Icons/Logo';
 import { config } from './config/gluestack-ui.config';
 import Button_lg from "./components/Button_lg";
 import { FormControl } from '@gluestack-ui/themed';
+import { useState } from 'react';
 
 export default function App() {
   return <GluestackUIProvider config={config}>
@@ -24,62 +25,6 @@ const Home = () => {
   return <Container />;
 };
 
-const [formData, setData] = React.useState({});
-const [errors, setError] = React.useState({});
-
-let regex_email = /^[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,5}/
-const digit = /[0-9]/
-const upperCase = /[A-Z]/
-const lowerCase = /[a-z]/
-const nonAlphanumeric = /[^0-9A-Za-z]/
-
-
-const isStrongPassword = (password) =>
-  [digit, upperCase, lowerCase, nonAlphanumeric]
-    .every((re) => re.test(password))
-  && password.length >= 8
-  && password.length <= 32
-
-
-const validate = () =>
-  setErrors({})
-console.log('email', formData, email)
-console.log('password', formData.password)
-if (regex_email.test(formData.email) != false) {
-  console.log('regex_email', formData.email)
-
-  setErrosrs({
-    ...errors,
-    email: 'Email invalid'
-  });
-  return false;
-
-
-  if (formData.email === undefined) {
-
-    console.log('undefinied', formData.email)
-    setErrors({
-      ...errors,
-      email: 'Theres no email'
-    });
-    return false;
-  } else if (formData.email) {
-
-  }
-
-  if (!isStrongPassword(formData.password)) {
-    setErrors...
-    password: 'Wrong Password'
-
-  }
-
-
-  const onSubmit = () => {
-    validate() ? console.log('Validation OK');
-    console.log('Validation failed', errors);
-  };
-
-}
 
 const FeatureCard = ({
   iconSvg: IconSvg,
@@ -106,6 +51,68 @@ const FeatureCard = ({
   </Box>;
 };
 const Container = () => {
+  // Mueve la declaración de los estados y la lógica asociada dentro del componente de función Container
+  const [formData, setFormData] = useState({});
+  const [errors, setErrors] = useState({});
+
+
+
+  let regex_email = /^[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,5}/;
+  const digit = /[0-9]/;
+  const upperCase = /[A-Z]/;
+  const lowerCase = /[a-z]/;
+  const nonAlphanumeric = /[^0-9A-Za-z]/;
+
+  const isStrongPassword = (password) =>
+    [digit, upperCase, lowerCase, nonAlphanumeric]
+      .every((re) => re.test(password))
+    && password.length >= 8
+    && password.length <= 32;
+
+  const validate = () => {
+    setErrors({});
+
+    console.log('email', formData.email);
+    console.log('password', formData.password);
+
+    if (!regex_email.test(formData.email)) {
+      console.log('regex_email', formData.email);
+      setErrors({
+        ...errors,
+        email: 'Invalid email'
+      });
+      return false;
+    }
+
+    if (!formData.email) {
+      console.log('undefined', formData.email);
+      setErrors({
+        ...errors,
+        email: 'There is no email'
+      });
+      return false;
+    }
+
+    if (!isStrongPassword(formData.password)) {
+      setErrors({
+        ...errors,
+        password: 'Weak password'
+      });
+      return false;
+    }
+
+    return true;
+  };
+
+  const onSubmit = () => {
+    if (validate()) {
+      console.log('Validation OK');
+      console.log(formData.email);
+    } else {
+      console.log('Validation failed', errors);
+    }
+  };
+
   return <Box flex={1} backgroundColor="$black">
     <ScrollView style={{
       height: '100%'
@@ -159,8 +166,8 @@ const Container = () => {
                   <FormControlLabelText color='$white'>Email</FormControlLabelText>
                 </FormControlLabel>
                 <Input $focus-borderColor='$orange500'>
-                  <InputField type="text" placeholder="Email" color='$white' onChangeText={value=>setData({...formData, email: value})}/>
-                  
+                  <InputField type="text" placeholder="Email" color='$white' onChangeText={value => setData({ ...formData, email: value })} />
+
                 </Input>
 
                 <FormControlHelper>
@@ -186,7 +193,7 @@ const Container = () => {
                   <FormControlLabelText color='$white'>Password</FormControlLabelText>
                 </FormControlLabel>
                 <Input $focus-borderColor='$orange500'>
-                  <InputField type="password" placeholder="Password" color='$white' onChangeText={value=>setData({...formData, password: value})}/>
+                  <InputField type="password" placeholder="Password" color='$white' onChangeText={value => setData({ ...formData, password: value })} />
                 </Input>
 
                 <FormControlHelper>
