@@ -1,4 +1,4 @@
-import React from 'react'; import { FormControl, FormControlLabel, FormControlLabelText, FormControlHelper, FormControlHelperText, FormControlError, FormControlErrorIcon, FormControlErrorText, Input, InputField, Radio, RadioGroup, RadioIcon, RadioIndicator, RadioLabel, Button, ButtonText, Checkbox, CheckboxGroup, CheckboxIndicator, CheckboxIcon, CheckboxLabel, Textarea, TextareaInput, SelectTrigger, SelectInput, SelectIcon, SelectPortal, SelectBackdrop, SelectContent, SelectDragIndicatorWrapper, SelectDragIndicator, SelectItem, Slider, SliderTrack, SliderFilledTrack, SliderThumb, Switch, Modal, ModalBackdrop, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, HStack, Center, Icon, CircleIcon, CheckIcon, AlertCircleIcon, ChevronDownIcon } from '@gluestack-ui/themed';
+import { FormControl, FormControlLabel, FormControlLabelText, FormControlHelper, FormControlHelperText, FormControlError, FormControlErrorIcon, FormControlErrorText, Input, InputField, Radio, RadioGroup, RadioIcon, RadioIndicator, RadioLabel, Button, ButtonText, Checkbox, CheckboxGroup, CheckboxIndicator, CheckboxIcon, CheckboxLabel, Textarea, TextareaInput, SelectTrigger, SelectInput, SelectIcon, SelectPortal, SelectBackdrop, SelectContent, SelectDragIndicatorWrapper, SelectDragIndicator, SelectItem, Slider, SliderTrack, SliderFilledTrack, SliderThumb, Switch, Modal, ModalBackdrop, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, HStack, Center, Icon, CircleIcon, CheckIcon, AlertCircleIcon, ChevronDownIcon } from '@gluestack-ui/themed';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { useState } from 'react';
 //import { config } from '@gluestack-ui/config';
@@ -10,18 +10,24 @@ import LightBulbPerson from './assets/Icons/LightbulbPerson';
 import Rocket from './assets/Icons/Rocket';
 import Logo from './assets/Icons/Logo';
 import { config } from './config/gluestack-ui.config';
+import React from 'react';
+import BackGround_green from './Components/BackGround_green';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Iphone from './Components/IPhone';
+import Iphone from './Components/Iphone';
+import { View } from 'react-native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import drawer1 from './Components/drawer1';
 
-const Stack = createNativeStackNavigator();
+
+const Drawer = createDrawerNavigator();
 
 export default function App() {
   return <NavigationContainer>
     <GluestackUIProvider config={config}>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="IPhone" component={Iphone}/>
-      </Stack.Navigator>
+      <Drawer.Navigator>
+        <Drawer.Screen name="Home" component={Home} />
+        <Drawer.Screen name="IPhone" component={Iphone}/>
+      </Drawer.Navigator>
     </GluestackUIProvider>;
   </NavigationContainer>
 }
@@ -63,7 +69,11 @@ const Container = () => {
     return true;
   };
   const onSubmit = () => {
-    validate() ? navigation.navigate('IPhone' email: FormData.email) : console.log('Validation Failed', errors);
+    if (validate()) {
+      navigation.navigate('IPhone', { email: formData.email });
+    } else {
+      console.log('Validation Failed', errors);
+    }
   };
   return <VStack>
     <Box>
